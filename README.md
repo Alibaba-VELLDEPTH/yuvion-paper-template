@@ -1,27 +1,16 @@
-# Yuvion Paper Template
+# Yuvion Paper Templates
 
-A CVPR-style LaTeX paper template for the Yuvion Team at Alibaba Group.
+Yuvion Team, Alibaba Group 的论文模板，按版式独立存放。
 
-## Contents
+| 版本 | 目录 | 主文件 |
+| --- | --- | --- |
+| CVPR 双栏 | [cvpr/](cvpr/) | `yuvion_team_template.tex` |
+| NeurIPS 单栏 | [neurips/](neurips/) | `yuvion_team_neurips.tex` |
 
-- `yuvion_team_template.tex`: main LaTeX source and formatting guide
-- `yuvion_team_template.bib`: example bibliography
-- `cvpr.sty`: CVPR layout style
-- `ieeenat_fullname.bst`: bibliography style
-- `yuvion_en_good.png` and `alibaba-security-en.png`: branded header assets
+## 使用方式
 
-## Usage
+- **CVPR**：将 `cvpr/` 目录中的文件打包上传到新的 Overleaf 项目，选择 `yuvion_team_template.tex` 为主文件。原模板内容保持不变，仅移动目录。
+- **NeurIPS**：直接下载 [Overleaf ZIP](neurips/yuvion-neurips-template.zip)，也可先查看 [PDF 预览](neurips/yuvion-neurips-preview.pdf)。
+- 本地编译前先进入对应目录，再运行 `latexmk -pdf <主文件>`；两套模板的资源文件均包含在各自目录中。
 
-1. Open `yuvion_team_template.tex` as the main document.
-2. Replace the placeholder title, author names, and email addresses.
-3. Use `Yuvion Team, Alibaba Group` as the team affiliation.
-4. Compile with pdfLaTeX and BibTeX.
-
-The template includes internal paper-publication and open-source approval
-links. Keep the repository private unless those links are removed or approved
-for public distribution.
-
-## Attribution
-
-The layout is based on the official CVPR 2026 author kit, with a customized
-Yuvion and Alibaba Security technical-report header.
+具体说明见 [CVPR README](cvpr/README.md) 和 [NeurIPS README](neurips/README.md)。
