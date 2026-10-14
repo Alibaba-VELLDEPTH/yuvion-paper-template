@@ -1,0 +1,210 @@
+% Yuvion single-column technical report, based on official NeurIPS 2026.
+% Main document for Overleaf. Compile with pdfLaTeX + BibTeX.
+\documentclass[10pt,letterpaper]{article}
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+\usepackage[preprint]{neurips_2026}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{yuvion-neurips}
+\usepackage[breaklinks,colorlinks,allcolors=yuvionblue]{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
+\hypersetup{pdftitle={Yuvion Team Paper Template and Author Guidelines},
+  pdfauthor={Yuvion Team, Alibaba Group}}
+
+\title{Yuvion Team Paper Template\\and Author Guidelines}
+\author{First Author\\
+  Yuvion Team, Alibaba Group\\
+  \texttt{first.author@example.com}
+  \And
+  Second Author\\
+  Yuvion Team, Alibaba Group\\
+  \texttt{second.author@example.com}}
+
+\begin{document}
+\maketitle
+\pagestyle{yuvionheader}
+\thispagestyle{yuvionheader}
+
+\begin{abstract}
+This template provides a single-column format for technical reports by the
+Yuvion Team at Alibaba Group. It combines the typography, title treatment,
+section hierarchy, and page geometry of the official NeurIPS 2026 style with
+the Alibaba Security and Yuvion branded header from the team's CVPR template.
+Replace this paragraph with a concise statement of the research problem,
+method, principal findings, and limitations. The examples demonstrate
+equations, figures, tables, algorithms, citations, and an appendix without
+introducing external figure dependencies.
+\end{abstract}
+
+\section{Using this template}
+\label{sec:intro}
+Open \texttt{yuvion\_team\_neurips.tex} as the main document. Replace the
+title, author names, email addresses, and example content. Use
+\textbf{Yuvion Team, Alibaba Group} as the team affiliation. All manuscript
+text should be written in English.
+
+This is a branded technical-report template. The original CVPR template
+remains available for two-column reports. For an actual conference
+submission, use the conference's official author kit and its current
+anonymization, page-limit, and checklist requirements.
+
+\subsection{Single-column layout}
+The official style defines a $5.5$-inch-wide by $9$-inch-high text area on
+US Letter paper, with 10-point body text and 11-point leading. Keep figures,
+tables, and equations within \verb|\linewidth|. Do not load the CVPR style,
+enable \texttt{twocolumn}, or override the body margins with another layout
+package. The branding layer adjusts only the header clearance and notice.
+
+\subsection{Authors and references}
+Separate author blocks with \verb|\And|; use \verb|\AND| to force another
+author row. The bibliography uses numeric citations. For example, cite the
+original Transformer paper as \citep{vaswani2017attention}, or refer to its
+authors with \citet{vaswani2017attention}. Replace the example bibliography
+with references actually used in your manuscript.
+
+\section{Method and mathematical notation}
+\label{sec:method}
+Define each symbol when it first appears. For a model $f_\theta$ with
+parameters $\theta$ and a dataset $\mathcal{D}$, an example objective is
+\begin{equation}
+  \theta^* = \operatorname*{arg\,min}_{\theta}
+  \frac{1}{|\mathcal{D}|}\sum_{(x,y)\in\mathcal{D}}
+  \ell\bigl(f_\theta(x),y\bigr).
+  \label{eq:objective}
+\end{equation}
+Use numbered equations for expressions referenced in the text.
+\Cref{eq:objective} illustrates automatic cross-references; the same commands
+work for \cref{sec:method,fig:pipeline,tab:example,alg:example}.
+
+\begin{figure}[t]
+  \centering
+  \setlength{\fboxsep}{10pt}
+  \fbox{\parbox[c][0.42in][c]{0.23\linewidth}{\centering Input}}
+  \hfill$\longrightarrow$\hfill
+  \fbox{\parbox[c][0.42in][c]{0.23\linewidth}{\centering Method}}
+  \hfill$\longrightarrow$\hfill
+  \fbox{\parbox[c][0.42in][c]{0.23\linewidth}{\centering Output}}
+  \caption{An example full-width pipeline. Replace these placeholder boxes
+  with your method figure. Captions appear below figures.}
+  \label{fig:pipeline}
+\end{figure}
+
+\section{Experiments and presentation}
+\label{sec:experiments}
+Describe the datasets, baselines, metrics, implementation details, and
+evaluation protocol before reporting results. Distinguish measured results
+from hypotheses and illustrations. The table below intentionally contains
+no invented experimental values.
+
+\begin{table}[ht]
+  \caption{Example results table. Dashes are placeholders, not measurements.}
+  \label{tab:example}
+  \centering
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc@{}}
+    \toprule
+    Method & Quality $\uparrow$ & Cost $\downarrow$ & Latency $\downarrow$\\
+    \midrule
+    Baseline & -- & -- & --\\
+    Proposed method & -- & -- & --\\
+    Ablation & -- & -- & --\\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+
+\subsection{Figures, tables, and algorithms}
+Use \verb|figure| and \verb|table| for single-column floats; starred floats
+are not necessary. Put table captions above the table and figure captions
+below the figure. Use legible labels and avoid encoding distinctions only
+by color. Insert a graphic with:
+\begin{verbatim}
+\includegraphics[width=\linewidth]{figure.pdf}
+\end{verbatim}
+
+\begin{algorithm}[ht]
+  \caption{Example evaluation procedure}
+  \label{alg:example}
+  \begin{algorithmic}[1]
+    \REQUIRE Evaluation set $\mathcal{D}$, fixed model $f_\theta$
+    \STATE Initialize results $\mathcal{R}\gets\varnothing$
+    \FOR{each $(x,y)\in\mathcal{D}$}
+      \STATE Compute prediction $\hat{y}\gets f_\theta(x)$
+      \STATE Record the prediction, reference, and execution cost in $\mathcal{R}$
+    \ENDFOR
+    \STATE Aggregate metrics over $\mathcal{R}$
+    \RETURN Metrics and reproducible evaluation settings
+  \end{algorithmic}
+\end{algorithm}
+
+\subsection{Reproducibility and limitations}
+Report the data split, random seeds, compute settings, and relevant software
+versions. State which conclusions are supported by the experiments and
+which remain uncertain. Include failure cases and limitations that help
+readers understand the method's scope.
+
+\section{Paper publication and open-source workflow}
+\input{team_publication_workflow}
+
+\section{Final checklist}
+Confirm the title, author order, affiliation, and contact details. Replace
+all sample text, figure placeholders, and table dashes. Check references,
+figure readability, and PDF metadata. Complete the team's publication and,
+where applicable, open-source review before external release.
+
+\begin{ack}
+Replace this paragraph with the appropriate acknowledgments and funding
+disclosure, or remove the environment when it is not applicable.
+\end{ack}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\clearpage
+\appendix
+\section{Supplementary material}
+\label{app:supp}
+Use this appendix for additional implementation details, derivations,
+evaluation protocols, or qualitative examples. Appendix sections use
+lettered headings while equations, tables, and figures retain their normal
+counters. Remove this section if no supplementary material is needed.
+
+\subsection{Build and edit guide}
+\begin{table}[h]
+  \centering
+  \caption{Files commonly edited when starting a new report.}
+  \begin{tabularx}{\linewidth}{@{}lX@{}}
+    \toprule
+    File & Purpose\\
+    \midrule
+    \texttt{yuvion\_team\_neurips.tex} & Title, authors, abstract, and manuscript body.\\
+    \texttt{references.bib} & Bibliographic records for cited work.\\
+    \texttt{yuvion-neurips.sty} & Team header and technical-report notice.\\
+    \texttt{neurips\_2026.sty} & Official NeurIPS style, preserved unchanged.\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+For Overleaf, upload the source ZIP as a new project, choose the main file,
+and select pdfLaTeX. For a local TeX Live installation, compile with:
+\begin{verbatim}
+pdflatex yuvion_team_neurips
+bibtex yuvion_team_neurips
+pdflatex yuvion_team_neurips
+pdflatex yuvion_team_neurips
+\end{verbatim}
+The second and third LaTeX passes resolve citations and cross-references.
+Alternatively, run \verb|latexmk -pdf yuvion_team_neurips.tex|.
+
+\subsection{Conference submission variant}
+The default document intentionally displays team identity. To prepare a
+conference submission, start from the official author kit, use the required
+review mode, remove team branding and identifying material, and add the
+official checklist when required. The team header is a report customization,
+not part of the official conference submission format.
+
+\end{document}

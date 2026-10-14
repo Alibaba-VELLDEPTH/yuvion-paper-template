@@ -1,0 +1,30 @@
+% Team branding layered over the unmodified official NeurIPS 2026 style.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{yuvion-neurips}[2026/10/14 Yuvion single-column report]
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\definecolor{yuvionblue}{RGB}{35,85,145}
+\makeatletter
+\def\ps@yuvionheader{%
+  \def\@oddhead{\vbox{%
+    \hbox to\textwidth{%
+      \includegraphics[height=17pt]{alibaba-security-en.png}\hfil
+      \includegraphics[height=17pt]{yuvion_en_good.png}}%
+    \vskip 3pt\hrule height 0.8pt}}%
+  \let\@evenhead\@oddhead
+  \def\@oddfoot{\hfil\normalfont\thepage\hfil}%
+  \let\@evenfoot\@oddfoot
+}
+\makeatother
+% NeurIPS installs geometry at begin-document. Run after that hook and
+% compensate the larger header so that the body retains its original origin.
+\AtBeginDocument{%
+  \addtolength{\topmargin}{-12pt}%
+  \setlength{\headheight}{24pt}%
+  \pagestyle{yuvionheader}%
+}
+% A team report must not claim conference acceptance or submission.
+\makeatletter
+\renewcommand{\@noticestring}{Yuvion Team, Alibaba Group. Technical report.}
+\makeatother
+\endinput
