@@ -5,8 +5,8 @@
 
 [下载 Overleaf ZIP](yuvion-neurips-template.zip) · [查看 PDF 预览](yuvion-neurips-preview.pdf)
 
-本目录为独立的单栏版本，`../cvpr/` 中的 CVPR 双栏模板保持不变。
-从仓库运行本地编译前，请先 `cd neurips`。
+本目录为独立的单栏版本，`../double-column/` 中的 CVPR 双栏模板保持不变。
+从仓库运行本地编译前，请先 `cd single-column`。
 
 ## Overleaf
 
