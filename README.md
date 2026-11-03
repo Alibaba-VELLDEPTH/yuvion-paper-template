@@ -1,8 +1,7 @@
 # Alibaba / Yuvion Paper Template
 
 Yuvion Team, Alibaba Group 的单栏论文与技术报告模版。首页使用 Alibaba Group
-大 Logo、Yuvion Logo、橙色标题横线和圆角摘要框，正文与格式参数参照
-[VideoJev](https://arxiv.org/abs/2610.18615) 的公开论文源码整理。
+大 Logo、Yuvion Logo、橙色标题横线、圆角摘要框和作者贡献页脚。
 
 **[下载 Overleaf ZIP](https://github.com/Alibaba-VELLDEPTH/yuvion-paper-template/raw/refs/heads/main/overleaf.zip)**
 · **[查看 6 页 PDF](preview.pdf)** · **[版式参数与来源](FORMAT.md)**
@@ -13,7 +12,7 @@ Yuvion Team, Alibaba Group 的单栏论文与技术报告模版。首页使用 A
 
 1. 下载上方 ZIP，在 Overleaf 选择 **New Project → Upload Project**。
 2. 将 `main.tex` 设为主文件，编译器选 **XeLaTeX**。
-3. 修改 `metadata.tex` 中的标题、作者、单位、邮箱及项目链接。
+3. 修改 `metadata.tex` 中的标题、作者、单位、邮箱、项目链接及作者贡献。
 4. 替换 `sections/` 中的示例内容和 `figures/teaser.tex` 中的首页主图。
 5. 在 `references.bib` 中维护参考文献。
 
@@ -29,7 +28,7 @@ latexmk -xelatex main.tex
 
 ```text
 main.tex                主文件
-metadata.tex            标题、作者、单位、项目链接与 draft 开关
+metadata.tex            标题、作者、单位、作者贡献、项目链接与 draft 开关
 alibaba-report.sty      统一排版参数
 sections/               摘要、正文、附录与示例
 figures/teaser.tex       首页矢量主图占位示例
@@ -57,6 +56,13 @@ Equation~\eqref{eq:objective}    % 公式交叉引用
 正文为 US Letter 单栏、10pt、12pt 基线距，左右页边距各 25mm。
 首页后显式换页，正文从第二页开始。详细参数见 [FORMAT.md](FORMAT.md)。
 
+## 作者贡献页脚
+
+首页页脚显示 **Author contributions**，逐一列出各作者承担的工作；后续页面
+只显示页码。在 `metadata.tex` 中修改 `\authorcontributions`。方括号内容是
+填写示例，请替换为真实贡献，例如研究设计、方法、实现、实验、分析、验证、
+指导和论文修改。若无需贡献页脚，将其设为 `\renewcommand{\authorcontributions}{}`。
+
 ## 版本替换
 
 当前主分支仅保留这套新版模版。原 `double-column/`（CVPR 风格）和
@@ -66,7 +72,6 @@ Equation~\eqref{eq:objective}    % 公式交叉引用
 
 ## 来源
 
-- 版式参照：[VideoJev 公开论文与源码](https://arxiv.org/abs/2610.18615)。
 - Alibaba Group Logo：[集团官方媒体资源页](https://home.alibabagroup.com/en-US/resource-logos)。
 - Yuvion Logo：本仓库原团队品牌素材。
 - 标题与作者字体：原论文源码附带的 JD LangZhengTi2；正文采用同源的 Latin Modern。
