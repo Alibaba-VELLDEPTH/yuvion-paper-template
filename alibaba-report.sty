@@ -1,0 +1,145 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{alibaba-report}[2026/11/03 Branded single-column research report]
+\RequirePackage[T1]{fontenc}
+\RequirePackage{fontspec}
+% Same heading/author fonts as those bundled with the reference arXiv source.
+\setsansfont{JINGDONGLangZhengTi2-Bold.ttf}[Path=fonts/,
+  BoldFont=JINGDONGLangZhengTi2-Bold.ttf]
+\newfontfamily\reportaffiliationfont{JINGDONGLangZhengTi2-Regular.ttf}[Path=fonts/,
+  BoldFont=JINGDONGLangZhengTi2-Bold.ttf]
+% Latin Modern preserves the Computer Modern body design with portable outlines.
+\renewcommand{\rmdefault}{lmr}
+\renewcommand{\encodingdefault}{T1}
+\RequirePackage{microtype}
+\RequirePackage{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{booktabs,tabularx,multirow}
+\RequirePackage{enumitem}
+\RequirePackage{titlesec}
+\RequirePackage{caption,subcaption}
+\RequirePackage{algorithm,algorithmic}
+\RequirePackage{listings}
+\RequirePackage{tikz}
+\RequirePackage{etoolbox}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage[numbers,sort&compress]{natbib}
+\RequirePackage[colorlinks,allcolors=reportaccent,breaklinks]{hyperref}
+\RequirePackage{url}
+
+\definecolor{reportaccent}{HTML}{FF6A00}
+\definecolor{reportink}{HTML}{292824}
+\definecolor{reportgray}{HTML}{776B60}
+\definecolor{reportrule}{HTML}{DED6CB}
+\geometry{letterpaper,left=25mm,right=25mm,top=27.5mm,bottom=25mm,columnsep=6.5mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip plus 2pt}
+\setlength{\emergencystretch}{1em}
+\pagestyle{plain}
+\titleformat{\section}{\fontsize{12}{10}\selectfont\sffamily\bfseries\color{reportaccent}}{\thesection}{1em}{}
+\titleformat{\subsection}{\fontsize{11}{10}\selectfont\sffamily\bfseries\color{reportaccent}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\sffamily\bfseries\color{reportaccent}}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\normalsize\bfseries}{}{0pt}{}[.]
+% titlesec defaults reproduce the section spacing in the original class.
+\setlist[itemize]{leftmargin=*,nosep}
+\captionsetup{font=small,labelfont={sf,bf},labelsep=space,skip=6pt}
+\captionsetup[subfigure]{labelfont=normalfont,font=small}
+\captionsetup[table]{skip=5pt}
+% Match the reference class's compact sans-serif bold emphasis.
+\DeclareTextFontCommand{\textbf}{\fontsize{8.8}{10}\selectfont\bfseries\sffamily}
+\setlength{\textfloatsep}{6pt plus 1pt minus 2pt}
+\setlength{\floatsep}{6pt plus 1pt minus 2pt}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.03}
+\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{3}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newif\ifdraft
+\newcommand{\todo}[1]{\ifdraft\textcolor{reportaccent}{[TODO: #1]}\fi}
+\lstset{basicstyle=\ttfamily\small,keywordstyle=\color{reportaccent},
+  commentstyle=\color{black!55},stringstyle=\color{teal!70!black},
+  numbers=left,numberstyle=\tiny\color{black!50},numbersep=8pt,
+  frame=single,rulecolor=\color{black!15},backgroundcolor=\color{black!3},
+  breaklines=true,breakatwhitespace=true,columns=fullflexible,keepspaces=true,showstringspaces=false,
+  tabsize=2,captionpos=b,xleftmargin=3.4pt,xrightmargin=3.4pt,
+  aboveskip=8pt,belowskip=8pt}
+\renewcommand{\bibfont}{\small}
+
+\newtcolorbox{reportabstract}{enhanced,colback=white,colframe=reportaccent,
+  boxrule=0.5pt,arc=2.5mm,left=8mm,right=8mm,top=3mm,bottom=2.5mm,
+  before skip=0pt,grow to left by=1.5pt,grow to right by=1.5pt}
+\renewenvironment{abstract}{\begin{reportabstract}
+  \begin{center}{\sffamily\bfseries\fontsize{12}{12}\selectfont\color{reportaccent}Abstract}\vspace{1.5mm}\end{center}
+  \fontsize{10}{12}\selectfont\setlength{\parskip}{0pt}}{\end{reportabstract}}
+
+% Vector icons, editorial rules, and arrow placement follow the reference links.
+\newcommand{\paperlinkglyph}[1]{%
+  \begin{tikzpicture}[x=1pt,y=1pt,baseline=-2pt,line width=.7pt,
+    line cap=round,line join=round]
+  \path[use as bounding box] (0,0) rectangle (12,11);
+  \ifstrequal{#1}{Project}{%
+    \draw[reportgray] (1,5.2)--(6,9.7)--(11,5.2)
+      (2.5,4.9)--(2.5,1)--(9.5,1)--(9.5,4.9);
+    \draw[reportaccent] (5,1)--(5,4.1)--(7,4.1)--(7,1);
+  }{}%
+  \ifstrequal{#1}{Code}{%
+    \draw[reportgray] (3.6,8.4)--(.8,5.5)--(3.6,2.6)
+      (8.4,8.4)--(11.2,5.5)--(8.4,2.6);
+    \draw[reportaccent] (7.1,9)--(4.9,2);
+  }{}%
+  \ifstrequal{#1}{Models}{%
+    \draw[reportgray] (1.2,6)--(6,3.7)--(10.8,6)
+      (1.2,3.6)--(6,1.3)--(10.8,3.6);
+    \draw[reportaccent] (1.2,8.4)--(6,10.7)--(10.8,8.4)--(6,6.1)--cycle;
+  }{}%
+  \end{tikzpicture}}
+\newcommand{\paperlinkentry}[2]{\href{#1}{%
+  \begin{tikzpicture}[baseline=(label.base)]
+  \node[minimum width=74pt,minimum height=12pt,inner sep=0pt] (entry) {};
+  \node[anchor=west,inner sep=0pt] at (entry.west) {\paperlinkglyph{#2}};
+  \node[anchor=west,inner sep=0pt,text=reportink] (label)
+    at ([xshift=18pt]entry.west) {\MakeUppercase{#2}};
+  \draw[reportaccent,line width=.6pt,line cap=round,line join=round]
+    ([xshift=-5pt,yshift=-1.5pt]entry.east)--([yshift=3pt]entry.east)
+    ([xshift=-3.5pt,yshift=3pt]entry.east)--([yshift=3pt]entry.east)--([yshift=-.5pt]entry.east);
+  \draw[reportrule,line width=.4pt]
+    ([yshift=-4.5pt]label.base -| entry.west)--([yshift=-4.5pt]label.base -| entry.east);
+  \draw[reportaccent,line width=.65pt]
+    ([yshift=-4.5pt]label.base -| entry.west)--++(8pt,0);
+  \end{tikzpicture}}}
+\newcommand{\paperlinks}{\par\vspace{3pt}\begingroup
+  \sffamily\fontsize{7.5}{10}\selectfont
+  \noindent\makebox[\linewidth][c]{\scalebox{.9}{\paperlinkentry{\projecturl}{Project}}\hspace{24pt}%
+  \scalebox{.9}{\paperlinkentry{\codeurl}{Code}}\hspace{24pt}\scalebox{.9}{\paperlinkentry{\modelsurl}{Models}}}
+  \par\endgroup}
+\AtBeginDocument{\hypersetup{pdftitle={\shortpapertitle},
+  pdfauthor={Yuvion Team, Alibaba Group}}}
+
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{-1.2cm}
+  \noindent\begin{minipage}[c][0.46in][c]{0.60\textwidth}
+    \includegraphics[width=2.35in]{logos/alibaba-group-en.png}
+  \end{minipage}%
+  \begin{minipage}[c][0.46in][c]{0.40\textwidth}
+    \raggedleft\includegraphics[width=1.25in]{logos/yuvion.png}
+  \end{minipage}\par
+  \vspace{5pt}{\color{reportaccent}\hrule height 0.5pt}
+  \vspace{3mm}\begingroup\centering
+  {\sffamily\bfseries\fontsize{12.7}{19}\selectfont\@title\par}\endgroup
+  \vspace{3mm}{\color{reportaccent}\hrule height 0.5pt}
+  \vspace{5mm}\begingroup\centering
+  {\sffamily\bfseries\fontsize{10}{14.5}\selectfont\setlength{\parskip}{0pt}\@author\par}\endgroup
+  \vspace{4mm}}
+\makeatother
+\endinput

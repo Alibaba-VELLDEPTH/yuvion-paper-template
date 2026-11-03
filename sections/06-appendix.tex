@@ -1,0 +1,51 @@
+\section*{Supplementary Material}
+\subsection*{Contents}
+\noindent\hyperref[app:details]{\ref*{app:details}\quad Supplementary Details}\dotfill\pageref*{app:details}\par
+\noindent\hyperref[app:notes]{\ref*{app:notes}\quad Authoring Notes}\dotfill\pageref*{app:notes}\par
+\medskip
+\section{Supplementary Details}\label{app:details}
+The appendix uses lettered section headings. Figures, tables, equations,
+algorithms, and listings continue their numbering from the main paper, so
+every reference remains unambiguous.
+
+\subsection{Extended implementation details}
+Record prompts, preprocessing rules, optimizer settings, and decoding details
+that are required to reproduce the work. Use descriptive headings instead of
+collecting unrelated details into a single paragraph.
+
+\begin{table}[ht]
+\caption{Configuration fields to complete before release.}\label{tab:configuration}
+\centering
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+Field & Information to record\\
+\midrule
+Checkpoint & Model identifier, revision, and any adaptation weights.\\
+Data & Version, split, preprocessing, and exclusions.\\
+Compute & Device type, device count, precision, and wall-clock time.\\
+Evaluation & Exact command, metric implementation, and random seeds.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Equations and additional material}
+Appendix equations share the main equation counter:
+\begin{equation}
+  \operatorname{Var}(X)=\mathbb{E}[X^2]-\mathbb{E}[X]^2.
+\end{equation}
+Remove the examples that are not useful to your paper. Replace figure
+placeholders with an image, for example:
+\begin{lstlisting}[language=TeX]
+\includegraphics[width=\linewidth]{figures/name.pdf}
+\end{lstlisting}
+
+\section{Authoring Notes}\label{app:notes}
+\begin{enumerate}
+  \item Edit \texttt{metadata.tex}, then replace the abstract and section files.
+  \item Add figures to \texttt{figures/} and bibliography entries to
+    \texttt{references.bib}.
+  \item Use automatic cross-references for every numbered object.
+  \item Replace all sample links, names, example text, and empty result cells.
+  \item Set \verb|\draftfalse| in the metadata when editorial notes should be hidden.
+\end{enumerate}
+\todo{Example editorial note. Delete this note before releasing the paper.}

@@ -1,0 +1,68 @@
+\section{Experiments}\label{sec:experiments}
+\subsection{Experimental setup}
+\paragraph{Data and metrics}
+Identify dataset versions, licenses, splits, exclusions, and metrics. Report
+the unit of aggregation and whether intervals describe variation across
+examples, seeds, or independent runs. State how overlap and contamination
+were checked.
+
+\paragraph{Implementation details}
+Specify model checkpoints, software versions, hyperparameters, random seeds,
+hardware, and the number of optimization steps. Report the actual resource
+configuration used by each experiment.
+
+\subsection{Results and ablations}
+Table~\ref{tab:results} uses a full-width three-rule table; values are left
+blank intentionally. Table captions appear above the table, and figure
+captions appear below the figure.
+\begin{table}[ht]
+\caption{Main comparison. Dashes indicate unfilled placeholders. No values in
+this template are experimental measurements.}\label{tab:results}
+\centering
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llccc@{}}
+\toprule
+Method & Setting & Quality $\uparrow$ & Latency $\downarrow$ & Memory $\downarrow$\\
+\midrule
+Baseline & Reference & -- & -- & --\\
+Proposed & Full method & -- & -- & --\\
+\midrule
+Ablation & Without component A & -- & -- & --\\
+Ablation & Without component B & -- & -- & --\\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+Discuss accuracy, efficiency, and failure modes together. Do not attribute a
+gain to a component without an appropriate control experiment.
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}[t]{0.47\linewidth}
+  \centering
+  \fbox{\parbox[c][0.85in][c]{0.88\linewidth}{\centering Qualitative example A}}
+  \caption{Describe the input and prediction.}\label{fig:case-a}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.47\linewidth}
+  \centering
+  \fbox{\parbox[c][0.85in][c]{0.88\linewidth}{\centering Qualitative example B}}
+  \caption{Describe a representative failure.}\label{fig:case-b}
+\end{subfigure}
+\caption{Qualitative examples. Use the same crop, label size, and color
+conventions across panels. These boxes are placeholders.}\label{fig:cases}
+\end{figure}
+
+\subsection{Code and reproducibility}
+Listing~\ref{lst:config} demonstrates line-numbered code without requiring
+shell escape or external syntax-highlighting programs.
+\begin{lstlisting}[language=Python,caption={Illustrative evaluation configuration.},label={lst:config}]
+config = {
+    "seed": 42,
+    "split": "validation",
+    "batch_size": 1,
+    "checkpoint": "REPLACE_WITH_CHECKPOINT",
+}
+# Record exact versions and commands with each run.
+\end{lstlisting}
+For long URLs, use \verb|\url{...}| rather than manually inserting line breaks.
+Use footnotes sparingly.\footnote{An example footnote, set smaller than the
+body text and placed at the bottom of the relevant page.}

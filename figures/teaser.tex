@@ -1,0 +1,23 @@
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\sffamily\small,
+  box/.style={draw=reportaccent!65,rounded corners=3pt,
+  fill=reportaccent!3,minimum width=3.7cm,minimum height=1.30cm,align=center},
+  arr/.style={->,>=stealth,thick,draw=reportaccent}]
+\node[box] (input) at (0,0) {Observations\\and goals};
+\node[box] (model) at (5.3,0) {Shared model\\and computation};
+\node[box] (output) at (10.6,0) {Structured\\decisions};
+\draw[arr] (input) -- (model);
+\draw[arr] (model) -- (output);
+\node[font=\sffamily\bfseries\small,anchor=west] at (-1.85,1.15)
+  {An overview of the main idea};
+\draw[reportaccent!35] (-1.85,-1.15) -- (12.45,-1.15);
+\node[align=center,font=\small,text=black!65] at (5.3,-1.65)
+  {Replace this vector placeholder with a full-width method figure or key result.\\
+   Use readable labels, consistent colors, and an explanatory caption.};
+\end{tikzpicture}
+\caption{\textbf{Overview of the proposed approach.} Explain what each component
+represents, how information flows through the method, and what readers should
+learn from the figure. This is an illustrative placeholder, not a result.}
+\label{fig:teaser}
+\end{figure}

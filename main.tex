@@ -1,0 +1,27 @@
+% Main document. Compile with XeLaTeX + BibTeX, or: tectonic main.tex
+\documentclass[10pt,letterpaper]{article}
+\usepackage{alibaba-report}
+\input{metadata}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\input{sections/00-abstract}
+\paperlinks
+\end{abstract}
+\input{figures/teaser}
+\clearpage
+\input{sections/01-introduction}
+\input{sections/02-related-work}
+\input{sections/03-method}
+\input{sections/04-experiments}
+\input{sections/05-conclusion}
+\section*{Acknowledgments}
+Replace this paragraph with funding, collaboration, and other acknowledgments,
+or remove this section when it is not applicable.
+\bibliographystyle{plainnat}
+\bibliography{references}
+\clearpage
+\appendix
+\input{sections/06-appendix}
+\end{document}

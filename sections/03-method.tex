@@ -1,0 +1,63 @@
+\section{Method}\label{sec:method}
+\subsection{Problem formulation}
+Let $\mathcal{D}=\{(x_i,y_i)\}_{i=1}^{N}$ denote the training set and let
+$f_\theta$ denote a model with parameters $\theta$. Define the input, output,
+and constraints before introducing individual components.
+\begin{equation}
+  \theta^* = \argmin_{\theta}\frac{1}{N}\sum_{i=1}^{N}
+  \ell\bigl(f_\theta(x_i),y_i\bigr)
+  +\lambda\lVert\theta\rVert_2^2.
+  \label{eq:objective}
+\end{equation}
+Equation~\eqref{eq:objective} is a notation example rather than a prescribed
+training objective. Define the regularization strength $\lambda$ when it is used.
+
+\subsection{Model components}
+\subsubsection{Candidate representation}
+Define each intermediate quantity and its dimension. Multi-line equations
+should align at meaningful operators:
+\begin{align}
+  h &= f_\theta(x), & z_j &= g_\phi(c_j),\label{eq:representations}\\
+  s_j &= \frac{h^\top z_j}{\tau}, &
+  p_j &= \frac{\exp(s_j)}{\sum_k\exp(s_k)}.\label{eq:probability}
+\end{align}
+Here $c_j$ is a candidate and $\tau>0$ is a temperature. Explain whether the
+representations share parameters, how they are normalized, and how decisions
+are decoded.
+
+\paragraph{Special cases}
+Use a cases environment when a rule has distinct branches:
+\begin{equation}
+  \hat y = \begin{cases}
+    \argmax_j p_j, & \max_j p_j\geq\delta,\\
+    \text{abstain}, & \text{otherwise}.
+  \end{cases}
+\end{equation}
+
+\subsection{Algorithms and mathematical statements}
+Use numbered algorithm captions and explicit inputs and outputs.
+Algorithm~\ref{alg:evaluate} illustrates a reproducible evaluation procedure.
+\begin{algorithm}[ht]
+\caption{Evaluation procedure}\label{alg:evaluate}
+\begin{algorithmic}[1]
+\REQUIRE Fixed model $f_\theta$, evaluation set $\mathcal{D}_{\mathrm{eval}}$
+\ENSURE Aggregated metrics and per-example records
+\STATE Initialize records $\mathcal{R}\gets\varnothing$
+\FOR{each $(x,y)\in\mathcal{D}_{\mathrm{eval}}$}
+  \STATE Compute $\hat y\gets f_\theta(x)$
+  \STATE Measure the metric and execution cost
+  \STATE Append $(\hat y,y,\mathrm{cost})$ to $\mathcal{R}$
+\ENDFOR
+\STATE \textbf{return} Aggregate$(\mathcal{R})$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{proposition}[Normalization example]\label{prop:normalization}
+For finite real-valued scores $s_j$, the probabilities in
+Equation~\eqref{eq:probability} satisfy $p_j>0$ and $\sum_jp_j=1$.
+\end{proposition}
+\begin{proof}
+Exponentials of finite real numbers are positive. Dividing each term by their
+sum yields positive values whose sum is one.
+\end{proof}
+Only retain mathematical statements that serve the paper's argument.
